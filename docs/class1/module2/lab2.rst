@@ -1,33 +1,100 @@
-Lab – Power-on the |bip| Appliance
-----------------------------------
+Pool Member and Virtual Servers
+===============================
 
-.. TODO:: Needs lab description
+In this exercise, you will determine the effects of monitors, and on the status of pools members and virtual servers.  You will also review the hierarchal effects of changes in status of various configuration objects.
 
-In this lab we will connect the power cord and turn on the |bip| Appliance.
+Create a new monitor
+--------------------
 
-Task – Connect the Power Cord
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create **mysql** monitor for testing.
 
-.. TODO:: Needs task description
+Go to **Local Traffic > Monitors** and select **Create**.
 
-In this task you will connect the appropriate power cord.
++----------------------+------------------+
+| **Name**             | mysql\_monitor   |
++----------------------+------------------+
+| **Parent Monitor**   | mysql            |
++----------------------+------------------+
+| **Interval**         | 15               |
++----------------------+------------------+
+| **Timeout**          | 46               |
++----------------------+------------------+
 
-.. IMPORTANT:: Be sure to use the appropriate power cord for your region.
-   Follow all applicable electrical guidelines and codes.
+Effects of Monitors on Members, Pools and Virtual Servers
+---------------------------------------------------------
 
-Follow these steps to complete this task:
+Go to **Local Traffic > Pools > www\_pool** and assign ths
+**mysql\_monitor** to the pool.
 
-#. Connect one end to the |bip|
-#. Connect the other end to the power source
+Observe availability status of **www\_pool.** The pool status
+momentarily changes to **Unknown**.
 
-Task – Turn on the |bip| Appliance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Q1. Since the* **mysql\_monitor** *will fail, how long will it take to
+mark the pool offline?*
 
-.. TODO:: Needs task description
+Go to **Local Traffic > Pool > www\_pool** and then **Member** from the
+top bar and open member **10.1.20.13:80** and note the status of the
+monitors.
 
-In this task you turn on the |bip| Appliance.
+Open **Local Traffic -> Network Map -> Show Map**
 
-Follow these steps to complete this task:
+*Q2. What is the icon and status of* **www\_vs**\ *?*
 
-#. Push the 'On' button
-#. Verify the red F5 ball lights up
+*Q3. What is the icon and status of* **www\_pool**\ *?*
+
+*Q4. What is the icon and status of the* **www\_pool** *members?*
+
+*Q5. How does the status of the pool configuration effect the virtual
+server status?*
+
+Clear the virtual server statistics.
+
+Browse to **http://10.1.10.100** and note the browser results,
+statistics and tcpdump.
+
+Disable **www\_vs** and clear the statistics and ping the virtual
+server.
+
+*Q6. What is the icon and status of* **www\_vs**\ *?*
+
+Browse to **http://10.1.10.100** and note the browser results,
+statistics and tcpdump..
+
+*Q7. Did traffic counters increment for* **www\_vs**\ *?*
+
+Q8. What is the difference in the tcpdumps between Offline (Disabled) vs
+Offliine (Enabled)?
+
+.. IMPORTANT:: 
+
+   Make sure all virtual servers are **Enabled** before continuing.
+
+More on status and member specific monitors
+-------------------------------------------
+
+Go to **Local Traffic > Pool > www\_pool** and then **Member** from the
+top bar and open member **10.1.20.13:80.** Enable the **Configuration:
+Advanced** menus.
+
+*Q1. What is the status of the Pool Member and the monitors assigned to
+it?*
+
+In **Health Monitors** select **Member Specific** and assign the
+**http** monitor and **Update.**
+
+Go to the **Network Map**.
+
+*Q2. What is the status of* **www\_vs**, **www\_pool** *and the pool
+members?   Why?*
+
+Browse to **http://10.1.10.100** and note results of browser and
+tcpdump.
+
+*Q3. Did the site work?*
+
+*Q4. Which* **www\_pool** *members was traffic sent to?*
+
+.. IMPORTANT::
+
+   After completing this task remove **mysql\_monitor** from the
+   **www\_pool** health monitors

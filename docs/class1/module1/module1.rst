@@ -1,10 +1,16 @@
-Module – Installing a BIG-IP Virtual Edition
-=============================================
+Module – Packet Processing and Virtual Server Processing Order
+=================================================================
 
-.. TODO:: Needs module description
+In this module you will configure packet filters and virtual servers.
+You will pass traffic through the |bip| and observe which configuration
+items process or block the traffic under various circumstances.
 
-In this module you will learn how to install a |f5| |bip| |ve| into your
-environment.
+201 Objectives covered:
+   - 1.01
+      - Given a connectivity-troubleshooting situation, consider the packet and virtual
+        server processing order
+
+Estimated completion time: **30 minutes**
 
 .. toctree::
    :maxdepth: 1

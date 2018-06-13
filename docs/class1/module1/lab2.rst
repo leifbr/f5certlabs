@@ -1,39 +1,67 @@
-Lab – Install a |bip| |ve| image on a Hypervisor
-------------------------------------------------
+Packet Filter Lab
+=================
 
-.. TODO:: Needs lab description
+You are going to test how packet filters impact packet processing by
+creating a packet filter to block ftp connections to 10.1.10.100.
 
-In the previous lab we learned how to download the |bip| |ve| image.  Now, we
-can install the image onto a hypervisor.
+Create a packet filter
+----------------------
 
-Task – Upload the image to your Hypervisor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Go to **Network > Packet Filters > Rules** and **Create** a filter using
+the following:
 
-.. TODO:: Needs task description
++--------------------------------------+---------------+
+| **Name**                             | Block\_ftp    |
++--------------------------------------+---------------+
+| **Order**                            | First         |
++--------------------------------------+---------------+
+| **Action**                           | Discard       |
++--------------------------------------+---------------+
+| **Destination Hosts and Networks**   | 10.1.10.100   |
++--------------------------------------+---------------+
+| **Destination Port List**            | 21 (FTP)      |
++--------------------------------------+---------------+
+| **Logging**                          | Enabled       |
++--------------------------------------+---------------+
 
-In this task you will upload the image to your hypervisor.
+Make sure you select **Add** after entering a host/network or a port.
 
-Follow these steps to complete this task:
+Test the FTP packet filter
+--------------------------
 
-.. rst-class:: task-stepsx
+Ensure ftp connection is currently established to **10.1.10.100**.
 
-#. Open your hypervisor management console
-#. Figure out how to upload the image
+Go to **Network > Packet Filters > General** and select **Enable** and
+then **Update**.
 
-   .. ERROR:: These are bad instructions...
+*Q1. Was the existing ftp connection in the connection table affected?   Why?*
 
-#. Great!  You're done
+Quit ftp and clear virtual server statistics by going to **Local Traffic
+> Virtual Servers > Statistic**, select the virtual server and hit
+**Reset**.
 
-Task – Start a |bip| |ve| Instance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Attempt to establish an ftp connection to 10.1.10.100.
+Watch tcpdump capture you built in window1.
 
-.. TODO:: Needs task description
+*Q2. Was ftp connection successful? Why?*
 
-In this task we will start and instance of |bip| using the image uploaded in
-the previous task.
+*Q3. What did tcpdump reveal? Did the connection timeout or reset?*
 
-Follow these steps to complete this task:
+*Q4. What did virtual server statistics for* **ftp_vs** *reveal? Why are
+counters not incrementing?*
 
-#. Open your hypervisor management console
-#. Click the |bip| image
-#. Click the 'Start' button (or it's equivalent)
+*Q5. Prioritize the packet processing order below from 1-7:*
+
+Virtual Server\_\_\_ SNAT\_\_\_ AFM/Pkt Filter\_\_\_ NAT\_\_\_ Existing
+Connections\_\_\_ Self IP\_\_\_ Drop \_\_\_
+
+Review the Packet Filter Logs and Packet Filter Statistics, then disable
+the Packet Filters.
+
+Go to **Network > Packet Filters > Statistics** and review the
+information.
+
+Go to **System > Logs > Packet Filters** and review the information.
+
+Go to **Network > Packet Filters > General** and select **Disable** and
+then **Update**
