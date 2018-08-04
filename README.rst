@@ -1,11 +1,10 @@
-F5 Agility Lab Template
-=======================
+F5 Certification Labs
+=====================
 
 Introduction
 ------------
 
-This repo contains a template that should be used when creating lab
-documentation for F5's Agility Labs.
+This repo contains the templates and reStructuredText files required the build the HTML for the 201 Certification and 301a Certification labs.
 
 Setup
 -----
