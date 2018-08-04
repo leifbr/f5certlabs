@@ -8,7 +8,7 @@
 classname = "F5 Certification Labs"
 
 # OPTIONAL: The URL to the GitHub Repository for this class
-github_repo = "https://github.com/leifbr/F5-Certification-Labs"
+github_repo = "https://github.com/leifbr/f5certlabs.git"
 
 # OPTIONAL: Google Analytics
 # googleanalytics_id = 'UA-85156643-4'
