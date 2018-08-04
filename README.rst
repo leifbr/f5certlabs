@@ -4,7 +4,7 @@ F5 Certification Labs
 Introduction
 ------------
 
-This repo contains the templates and reStructuredText files required the build the HTML for the 201 Certification and 301a Certification labs.
+This repo contains the templates and reStructuredText files required the build the HTML files for the 201 TMOS Adminstration certification and and 301a LTM Architect, Setup and Deploy certification labs.  
 
 Setup
 -----
