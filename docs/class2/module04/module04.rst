@@ -1,7 +1,7 @@
 Module – Monitors and Status
 ==============================
 
-In this section you will configure 
+In this section you will configure and apply monitors and interpret the results.
 
 301a Objectives covered: 
    - 1.08-1.10

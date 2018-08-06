@@ -1,8 +1,8 @@
 Pool Member and Virtual Servers
 ===============================
 
-Task 1 – Create a new monitor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a new monitor
+~~~~~~~~~~~~~~~~~~~~
 
 In this task, you will determine the effects of monitors on the status
 of pools members.
@@ -58,12 +58,12 @@ server.
 *Q6. What is the icon and status of* **www\_vs**?
 
 Browse to **http://10.1.10.100** and note the browser results,
-statistics and tcpdump..
+statistics and tcpdump.
 
 *Q7. Did traffic counters increment for* **www\_vs**?
 
 *Q8. What is the difference in the tcpdumps between Offline (Disabled) vs
-Offliine (Enabled)?*
+Offline (Enabled)?*
 
 .. WARNING::
 

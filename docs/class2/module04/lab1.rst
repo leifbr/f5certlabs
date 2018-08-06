@@ -5,11 +5,11 @@ Default Monitors
 ----------------
 
 You will be setting up a default monitor to test any node created. You
-can also choose to use custom monitors and monitors on a per node basis.
+can also choose to use custom monitors and monitor on a per node basis.
 
 Go to **Local Traffic > Nodes**, note the status nodes.
 
-Note that the nodes exist in this table, even though they were never
+As you can see the nodes in this table, even though they were never
 specifically configured in the Node portion of the GUI. Each time a unique IP
 address is placed in a pool a corresponding node entry is added and
 assigned the default monitor, if configured.
@@ -37,7 +37,7 @@ Content Monitors
 ----------------
 
 The default monitor simply tells us the IP address is accessible, but we
-really don’t know the status of the particular application the node
+really don't know the status of the particular application the node
 supports. We are now going to create a monitor to specifically test the
 application we are interested in. We are going to check our web site and
 its basic authentication capabilities.
@@ -52,23 +52,23 @@ credentials **user.1/password**.
 
 You could use text from this page or text within the source code to test
 for availability. You could also use HTTP statuses or header
-information. You will be looking for the HTTP status “\ **200 OK**\ ” as
+information. You will be looking for the HTTP status **200 OK** as
 the receive string to determine availability.
 
 Note the URI is **/basic/**. You will need this for your monitor.
 
 Select **Local Traffic > Monitor** on the side-bar and create and new
-monitor HTTPcalled **www_test**.
+HTTP monitor called **www_test**.
 
 .. list-table::
-   :widths: 40 30
+   :widths: 40 70
 
    *  - Name 
       - **www_test**
    *  - Type
       - **http**
    *  - Send String
-      - **GET /basic/\\r\\n**
+      - **GET /basic/ HTTP/1.1 \\r\\n**
    *  - Receive String
       - **200 OK**
    *  - User Name
@@ -76,28 +76,27 @@ monitor HTTPcalled **www_test**.
    *  - Password
       - **password**
 
-.. NOTE::
-
-   In case you were wondering, the receive string is not case sensitive.
+.. NOTE:: In case you were wondering, the receive string is NOT case sensitive.
+ 
+   An excellent reference for crafting HTTP monitors can be found on ASK F5 at https://support.f5.com/csp/article/K2167. 
+   
 
 Click **Finish** and you will be taken back to **Local Traffic > Monitors**
 
-*Where is your new Monitor?*
+Do you see your new Monitor?
 
 .. HINT:: 
 
    Check the lower right hand corner of the Monitors list, here you
-   can go to the next page or view all Monitors
-
-You can change the number of records displayed per page in
-**System > Preferences**.
+   can go to the next page or view all Monitors. You can change the number of records 
+   displayed per page in **System > Preferences**.
 
 Go to **www\_pool** and replace the default **http** monitor with your
 **www\_test** monitor.
 
 *Q1. What is the status of the pool and its members?*
 
-*Q2. Go to* **Virtual Servers** *or* **Network Map***, what is the status of
+*Q2. Go to* **Virtual Servers** *or* **Network Map** *, what is the status of
 your virtual server?*
 
 Just for fun **Reverse** the monitor. Now when **200 OK** is returned it
@@ -106,7 +105,8 @@ indicates the server is not responding successfully.
 *Q3. What is status of your pool and virtual server now?*
 
 You can see where this would be useful if you were looking for a 404
-(bad page) response.
+(bad page) or 50x (server error) response and pulling the failed member
+out of the pool.
 
 .. WARNING::
 

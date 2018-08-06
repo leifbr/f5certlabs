@@ -250,7 +250,7 @@ Task 2 - Content Monitors
 
 Available
 
-*Q2. Go to* **Virtual Servers** or **Network Map**, *what is the status of
+*Q2. Go to* **Virtual Servers** *or* **Network Map** *, what is the status of
 your virtual server?*
 
 Available
@@ -333,7 +333,7 @@ Yellow Triangle - Availability: unavailable - State: enabled
 
 No, the virtual server's connection limit has been reached-
 
-*Q4. Did tcpdump capture connection reset?*
+*Q4. Did tcpdump capture a connection reset?*
 
 Yes, tcpdump revealed “R” reset
 

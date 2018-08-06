@@ -3,7 +3,7 @@ Inband Monitors
 
 In this exercise, you need to limited the amount of monitor traffic to
 your back in servers. You will use the basic inband monitor, but you
-would like the servers to come up sooner than 5 minutes, if they are
+would like the servers to come up faster than default of 5 minutes, if they are
 stable for over a minute. You will combine Inband and Active monitors to
 accomplish this.
 
@@ -12,12 +12,11 @@ Create an Inband monitor and Active monitor with an Up Interval
 
 Create an inband monitor named **my\_inband**.  Use all the defaults.
 
-Note the 300 retry timer, after 3 failures in a 30 second period the
+Note the 300 second retry timer, after 3 failures in a 30 second period the
 BIG-IP will mark the member down and will not check the member again for
 5 minutes.
 
-Create a new custom monitor as the active monitor. Make the monitor an **http** monitor called **active\_http**, with an **Up Interval** of **60** seconds and a **Time Until Up** of **30**
-second and a **Receive String** of **200 OK**.
+Create a new custom monitor as the active monitor. Make the monitor an **http** monitor called **active\_http**, with an **Up Interval** of **60** seconds and a **Time Until Up** of **30** second and a **Receive String** of **200 OK**.
 
 Assign the Inband monitor to a pool and test
 --------------------------------------------
@@ -25,7 +24,7 @@ Assign the Inband monitor to a pool and test
 You are going to begin by removing the current monitors for the
 **www\_pool** and replacing them with the **my\_inband** monitor only.
 
-Go to the **www\_pool** and remove the monitors and **Update**. Your
+Go to the **www\_pool** and remove all monitors and **Update**. Your
 pool members show now be **Unchecked**.
 
 *Q1. What is the status of the* **www\_pool** *and* **www\_vs**
@@ -36,7 +35,7 @@ Add the **my\_inband** monitor to the **www\_pool**.
 *Q2. What are the status of* **www\_pool** *and* **www\_vs**? *Can you access
 the web site?*
 
-Let’s simulate a failure. Open a new browser tab to
+Let's simulate a failure. Open a new browser tab to
 **https://10.1.1.252:10000** this will bring you to **Webmin** on the
 back-end server::
 

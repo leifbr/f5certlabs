@@ -16,7 +16,7 @@ Disable **www\_vs** from the **Virtual Server List** or from within the
 
 Open **Local** **Traffic > Virtual Servers** and hover over status icons.
 
-From window2 (TMSH) type::
+From window 2 (TMSH) type::
 
    show ltm virtual
    show ltm virtual www_vs
@@ -31,7 +31,7 @@ From window2 (TMSH) type::
 
 Clear virtual server stats and browse to **http://10.1.10.100**
 
-Observe the tcpdump (window1) and connection statistics in the Virtual
+Observe the tcpdump (window 1) and connection statistics in the Virtual
 Server statics GUI interface.
 
 *Q5. Did the site work? What did the tcpdump show?*
@@ -62,7 +62,7 @@ server to 1 and note the status and behavior of different connection
 scenarios.
 
 Modify **ftp\_vs** for connection limit of **1**. The **Connection Limit**
-option can be found under the **Advanced** virtual server menus.
+option can be found under the **Advanced** virtual server menu.
 
 Establish ftp connection to **10.1.10.100** and hold the logon open.
 
@@ -74,6 +74,6 @@ Open another window and establish a second ftp connection to **10.1.10.100**.
 
 *Q3. Did new ftp session establish connection? Why not?*
 
-*Q4. Did tcpdump capture connection reset?*
+*Q4. Did tcpdump capture a connection reset?*
 
 *Q5 Quit all FTP sessions and note* **ftp\_vs** *status.*

@@ -52,7 +52,7 @@ already been configured on the BIG-IP. Find the iRules below under
 We use these iRules to modify traffic and give Analytics something
 interesting to see.
 
-**random\_client\_ip** – randomizes the client IPs and user agents using
+**random\_client\_ip** - randomizes the client IPs and user agents using
 the data group you built::
 
    when CLIENT_ACCEPTED {
@@ -71,7 +71,7 @@ the data group you built::
 
 *Q2. Review the iRule, what profiles are required on the virtual server?*
 
-**delay\_server** – introduces delay into server-side traffic::
+**delay_server** - introduces delay into server-side traffic::
 
    when LB_SELECTED {
    # After a member has been selected by the load balancing algorithm introduce delay
@@ -81,18 +81,18 @@ the data group you built::
       if {[LB::server addr] equals "10.128.20.13"} {after 20}
    }
 
-* Q3. Review the iRule, what profiles are required on the virtual server?*
+*Q3. Review the iRule, what profiles are required on the virtual server?*
 
 Create an Analytics Profile
 ---------------------------
 
 Create an analytics profile that will be used with a virtual server.
 
-In the Configuration Utility, open the Local Traffic > Profiles >
-Analytics page, and then click Create.
+In the Configuration Utility, open the **Local Traffic > Profiles >
+Analytics** page, and then click **Create**.
 
 Create an analytics profile using the following information, and then
-click Finished.
+click **Finished**.
 
 +--------------------------+-----------------------------------------+
 | **Profile Name**         | custom_analytics                        |
@@ -198,7 +198,7 @@ Open the **Statistics > Analytics > HTTP > Overview page**.
 
 .. HINT::
 
-   If you don’t see anything, set your Auto Refresh to 1 minute. It may
+   If you don't see anything, set your Auto Refresh to 1 minute. It may
    take up to 5 minutes for analytics data to load.
 
 View the Analytics Reports
@@ -213,7 +213,7 @@ HTTP > Overview** page until you see statistics.
 Once you have data set the **Override** time range to list box, select
 **Last Hour**.
 
-Open the **Transactions** page from the top bar. Let’s review some of
+Open the **Transactions** page from the top bar. Let's review some of
 the various data compiled.
 
 From the **View By** list box, select **Pool Members**.
