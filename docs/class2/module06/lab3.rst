@@ -1,13 +1,12 @@
 Virtual Server Packet Processing
 ================================
 
-Create additional Virtual Servers
-----------------------------------
-
-Create a wildcard virtual server and pool, test and observe various
-traffic under different configurations to determine how virtual servers
+In this task you will create a wildcard virtual server and pool, test and observe various types of traffic under different configurations to determine how virtual servers
 process new inbound connections. You will be using tcpdump from window1,
 virtual server statistics, as well as a browser to determine behavior.
+
+Create additional Virtual Servers
+----------------------------------
 
 Create **wildcard\_vs** **10.1.10.100:\*** with a **TCP** profile, **Automap** and a
 pool named **wildcard\_pool** with the following member **10.1.20.11:\***
@@ -45,9 +44,9 @@ Server** and select **Create**.
 
 Don't forget to hit **Finished.**
 
-You didn't need to enter the source addresses allowed. Go to your new virtual
-server and look at the **Source** to see what the default default is source addresses
-allowed.
+You were not required to enter the source addresses allowed. Go to your new virtual
+server and look at the **Source** configuration to see what the default is for 
+source addresses allowed.
 
 Testing Virtual Server Packet Processing Behavior
 -------------------------------------------------
@@ -78,7 +77,7 @@ Modify the **wildcard\_vs** to only allow connections from a **Source**
 of 10.1.10.0/24.
 
 .. NOTE::
-   The source address your jumpbox shoud be connecting from is 10.1.10.51
+   The source address your jumpbox should be connecting from is 10.1.10.51
 
 Browse to http://10.1.10.100
 

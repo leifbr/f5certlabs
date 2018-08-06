@@ -3,9 +3,8 @@ Inband Monitors
 
 In this exercise, you need to limited the amount of monitor traffic to
 your back in servers. You will use the basic inband monitor, but you
-would like the servers to come up faster than default of 5 minutes, if they are
-stable for over a minute. You will combine Inband and Active monitors to
-accomplish this.
+would like the servers to come up faster than default of 5 minutes. 
+You will combine Inband and Active monitors to accomplish this.
 
 Create an Inband monitor and Active monitor with an Up Interval
 ---------------------------------------------------------------

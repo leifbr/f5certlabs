@@ -2,7 +2,7 @@ Module – Virtual Servers and Packet Processing Review
 =======================================================
 
 This is a review (but an important one) of virtual server and packet processing from 
-the 201 certifications and adds a lab on forwarding virtual servers.  
+the 201 certification lab and adds a lab on forwarding virtual servers.  
 
 These concepts are vital to passing the 301a.
 

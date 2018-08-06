@@ -111,10 +111,10 @@ the **Certificate** and **Key** drop-downs.
 Make sure you **Add** the certificate and key before you Finish.
 
 Go to the SSL Server profiles and create a new profile named
-**my-server-ssl** with you **import-ssl-cert** certificate and key.
+**my-server-ssl** with your **import-ssl-cert** certificate and key.
 
 Replace the current default client-side and server-side SSL profiles
-with your new SSL profile
+with your new SSL profiles.
 
 Browse to **http://10.1.10.115**.
 

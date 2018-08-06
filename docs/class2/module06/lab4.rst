@@ -2,7 +2,7 @@ Forwarding Virtual Servers
 ==========================
 
 Our web administrators would like to access the back-end server network.
-They all access form the same 10.1.10.0/24 network. Let's create a
+They all access from the same 10.1.10.0/24 subnet. Let's create a
 virtual server that allows them and only them to get to the backend
 network. REMEMBER somewhere a router must have the route to the backend
 network inserted.
@@ -41,8 +41,8 @@ More on Transparent Virtual Servers
 -----------------------------------
 
 You have a pool of servers running multiple applications (FTP, HTTP,
-SSH, etc) and you don’t want to create a virtual server for each
-application. In this case a transparent virtual server that doesn’t
+SSH, etc) and you don't want to create a virtual server for each
+application. In this case a transparent virtual server that doesn't
 translate the port would work best.
 
 Build your transparent pool and virtual server
@@ -55,9 +55,9 @@ wildcard ``*`` for the port.
 have used?*
 
 Create a virtual server called **transparent-vs** with a IP address of
-**10.1.10.95** with all ports ``*``, since we can't put any L7
+**10.1.10.95** with with the wildcard port ``*``, since we can't put any L7
 profiles on this virtual server a virtual server type of **Performance (Layer 4)** will
-be more efficient and configure **transparent-pool** as the pool.
+be more efficient, Finally configure **transparent-pool** as the virtual server pool.
 
 .. NOTE::
    Open the Advanced menu and notice that Address Translation is still enabled, but

@@ -1,7 +1,7 @@
 Module – SSL
 ==============
 
-<enter description>
+In this module, you will go over the basics of importing/creating certificates and building virtual servers that can encrypt and decrypt traffic.
 
 301a Objectives covered: 
    - 1.11-1.12
