@@ -19,16 +19,16 @@ For BIG-IP terminal access, you have two options:
    type the following::
 
     ssh root@10.1.1.245
-    Password: **default**
+    Password: default
 
 -  Select the PuTTY icon on the bottom task bar and select **bigip01**
 
 .. NOTE::
 
-   If you use PuTTY, you MIDDLE mouse button allows you to paste into
+   If you use PuTTY, your MIDDLE mouse button or **<shift> insert** allows you to paste into
    the window
 
-Given the following , network the BIG-IP and build a basic pool and
+Given the following information, network the BIG-IP and build a basic pool and
 virtual server using SNAT automap.
 
 +------------------+----------------+------------------+-----------------+-----------------+
@@ -63,13 +63,13 @@ Command examples for networking::
 
    create net vlan <vlan-name> interfaces add { <interface> { untagged } }
 
-   create net self <ip\_name> address <ip/mask> vlan <vlan\_name>
+   create net self <ip_name> address <ip/mask> vlan <vlan_name>
 
-   create net route def\_gw network 0.0.0.0/0 gw 10.1.10.1
+   create net route def_gw network 0.0.0.0/0 gw 10.1.10.1
 
 Command example for creating pool::
 
-   create ltm pool <pool name> members add { <ip:port> <ip:port> <etc…> } monitor http
+   create ltm pool <pool name> members add { <ip:port> <ip:port> <etc> } monitor http
 
 Command example for creating a standard virtual server::
 
@@ -80,14 +80,16 @@ Write your configuration to disk and create an archive::
    save sys config
    save sys ucs lab1-base-config
 
-The tmsh commands to build the base configuration can be found in **Appendix II**.
+.. NOTE::
+
+The tmsh commands to build the base configuration can be found in **Module 3.12**.
 
 Log on to the BIG-IP WebUI and verify your virtual server is **Available** (green circle).
 
 Using a new browser window (preferably a private browser window) access
 the web site at http://10.1.10.100
 
-*Q1. In the* **Request Detail** *at the top of the page, what is the client
+*Q1. In* **Request Detail** *at the top of the page, what is the client
 IP address and why?*
 
 SNATs and NATs
@@ -96,10 +98,10 @@ SNATs and NATs
 SNAT Pools
 ----------
 
-Building a new ftp application, let’s take a closer look at SNATs and
+You will build a new FTP application, to take a closer look at SNATs and
 SNAT Pools using the **tcpdump** tool and view the connection table.
 
-Build an FTP pool and virtual server. You will use the default
+When building the FTP application you will use the default
 **FTP** profile and use **Auto Map** for the Source Translation address.
 
 Go to **Local Traffic > Pools** and create a new pool.
@@ -147,20 +149,19 @@ Or use PuTTY::
    Passwood: default
 
 At the BIG-IP CLI prompt do a tcpdump of the server-side traffic and
-just watch the FTP pool member::
+watch the FTP pool member::
 
-  tcpdump -nni server_vlan host 10.1.20.15
+  tcpdump -nni server_vlan host 10.1.20.11
 
 From a Linux terminal window FTP to 10.1.10.100. The logon credentials
 are **root/default**. It may take 15-20 to connect.
 
-*Q1. Do you see traffic destined for the ? Where is it coming from?*
+*Q1. Do you see traffic destined for the for the FTP server? What is the source IP?*
 
-Imagine a dozen virtual servers using with pools in the same subnet
+Imagine a dozen virtual servers using 
 using Auto Map. It would be extremely difficult to watch for particular
-client traffic from a particular virtual server. SNAT pools can make
-management and debugging a little easier. Not to mention limiting the number
-of concurrent connections.
+client traffic from a particular virtual server. Not to mention a SNAT IP address can only handle 65535. SNAT pools can make
+management and debugging a little easier and keep port exhaustion at bay.
 
 Create a SNAT pool and assign it to the FTP server.
 
@@ -168,12 +169,12 @@ Go to **Address Translation** on the sidebar and select **SNAT Pool List**
 and create a new SNAT pool named **SNATpool\_249** with **10.1.20.249**
 as a member.
 
-Q2. Why might you require more than one IP address in the SNAT pool?
+*Q2. Why might you require more than one IP address in the SNAT pool?*
 
 Go to the **ftp\_vs** and change the **Source Address Translation** to
 the **SNATpool\_249** pool.
 
-Let’s tried the tcpdump we did earlier, but have it limited to the pool
+Let's tried the tcpdump we did earlier, but have it limited to the pool
 member and SNAT pool IP::
 
    tcpdump -nni server_vlan host 10.1.20.15 and 10.1.20.249
@@ -197,18 +198,18 @@ and server-side source IP?*
 More SNATs and NATs
 -------------------
 
-Let’s take a look at using SNATs to allow internal resources to access
-external resources more securely and the difference between SNAT and
-NATs.
+Let's take a look at using SNATs to allow internal resources to access
+external resources more securely and the difference between a SNAT and
+a NAT.
 
 The LAMP server used for the internal server farm has a default gateway
 of 10.1.20.240 and has no external access at this time, but you can SSH
-to it via the out-of-band management network.
+to it via the out-of-band management network at **10.1.1.252**.
 
 On the BIG-IP, add a new self IP address named **server\_gw** to the VLAN
-**server\_vlan**, with an IP address of**10.1.20.240** and netmask of **255.255.255.0**
+**server\_vlan**, with an IP address of **10.1.20.240** and netmask of **255.255.255.0**
 
-From the jumpbox SSH to the LAMP server at **10.1.1.252**. You can open PuTTY, load the LAMP (10.1.1.252) server profile and SSH to the LAMP server or open a terminal window and **ssh root@10.1.1.252**.  The user credentials are **root/default**.
+From the jumpbox, SSH to the LAMP server at **10.1.1.252**. You can open PuTTY, load the LAMP (10.1.1.252) server profile and SSH to the LAMP server or open a terminal window and **ssh root@10.1.1.252**.  The user credentials are **root/default**.
 
 At the command prompt, attempt to hit the Google open DNS server::
 
@@ -231,7 +232,7 @@ From the LAMP server try the **dig** command again and the try to **ping
 *Q2. Did the dig work? What was the source IP?. Did the ping work? What
 was the result?*
 
-From the Linux prompt attempt to FTP to **10.1.10.249**.
+From the Linux prompt attempt to FTP to **10.1.10.248**.
 
 *Q3. What happened when you try to FTP to the SNAT address?*
 
@@ -244,5 +245,5 @@ an **Origin Address** of **10.1.20.15**.
 
 Attempt to FTP to 10.1.10.15. Attempt to ping 10.1.10.15.
 
-*Q4. When you attempted to FTP and ping 10.1.10.15 and access 10.1.10.15
+*Q4. When you attempted to FTP and ping 10.1.10.15 and access 10.1.20.15
 behind the BIG-IP were you successful?*

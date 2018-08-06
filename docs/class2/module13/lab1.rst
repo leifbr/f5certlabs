@@ -19,7 +19,7 @@ Cut and paste these commands at the TMSH prompt **(tmos)#**::
 
    # Pool and Virtual Server v11.5.3
    create ltm pool www_pool members add { 10.1.20.11:80 10.1.20.12:80 10.1.20.13:80 } monitor http
-   create ltm virtual www\_vs destination 10.1.10.100:80 pool www_pool ip-protocol tcp source-address-translation { type automap }
+   create ltm virtual www_vs destination 10.1.10.100:80 pool www_pool ip-protocol tcp source-address-translation { type automap }
 
    # Write changes to disk
    save sys config

@@ -25,7 +25,7 @@ Window 2::
 Verify your virtual server is available and then browse to
 **https://10.1.10.115**. View the TCPDUMPs.
 
-*Q1. Did site work? Why didn’t you need to SNAT? Did you need SSL
+*Q1. Did site work? Why didn't you need to SNAT? Did you need SSL
 profiles?*
 
 *Q2. Could you use L7 iRules or profiles to view or modify the request or
@@ -54,7 +54,7 @@ On the **secure\_vs** in the virtual server **Resources** section enable
 Browse to **https://10.1.10.115/** scroll and select **Display Cookie** in
 the **HTTP Request and Response Information** section on the web page.
 
-*Q6. What node do the pictures come from? What is the name of the cookie
+*Q6. What nodes do the pictures come from? What is the name of the cookie
 inserted begin with?*
 
 Assign the **secure\_pool** to the **secure\_vs** once again. Browse to

@@ -16,7 +16,7 @@ server and that is the self IP address on the server VLAN
 SNAT Pools
 ~~~~~~~~~~
 
-*Q1. Do you see traffic destined for the FTP server? Where is it coming from?*
+*Q1. Do you see traffic destined for the FTP server? What is the source IP?*
 
 Yes, monitor traffic is hitting the FTP server at 10.1.20.15 from source
 IP 10.1.20.245 because monitors are serviced from the self IPs.
@@ -59,7 +59,7 @@ The BIG-IP sends a reset.
 *Q4. When you attempted to FTP and ping 10.1.10.15 and access 10.1.20.15
 behind the BIG-IP were you successful?*
 
-Yes, you can both FTP and ping to 10.1.20.15.
+Yes, you should be able to FTP and ping to 10.1.20.15.
 
 Module - Profiles
 =================
@@ -102,11 +102,11 @@ stack.
 Yes, after you added the http profile to break out the http (L7)
 request/response sequence.
 
-*Q6. What node do the pictures come from? What is the name of the cookie
+*Q6. What nodes do the pictures come from? What is the name of the cookie
 inserted begin with?*
 
 All the images came from the same node. The cookie starts with
-BIGipServerwww\_pool
+BIGipServerwww_pool
 
 *Q5. Did site work?*
 

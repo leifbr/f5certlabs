@@ -58,7 +58,7 @@ from the **Statistics Type** drop down menu select **Profiles Summary**
 and select the **Web Acceleration** profile view link. Note the
 information.
 
-You can get more detailed information on ram/fast cache entries at the
+You can get more detailed information on Web Acceleration profils and cache entries at the
 CLI level
 
 Log onto the CLI of your BIG-IP via SSH using the root account (root/default).
@@ -89,13 +89,13 @@ At the **Web Acceleration** drop down menu select **None**
 
 .. NOTE::
 
-  For purpose of this lab we don’t want caching interfering with our
+  For purpose of this lab we don't want caching interfering with our
   response headers.
 
 At the **HTTP Compression** drop down menu select the HTTP compression
 profile you just created.
 
-Browse the virtual server web siteand on the web page under **Content Examples
+Browse the virtual server web site and on the web page under **Content Examples
 on This Host** select the **HTTP Compress Example** and **Plaintext
 Compress Example** link.
 

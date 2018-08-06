@@ -5,9 +5,9 @@ Securing web applications with the HTTP profile
 -----------------------------------------------
 
 Here you are going to perform some custom profile alterations to help
-secure the web site. You are going to make sure hackers can see error
+secure the web site. You are going to make sure hackers cannot see error
 codes returned, scrub the response headers of extraneous and potentially
-dangerous information and encrypted the persistence cookie to prevent
+dangerous information and encrypt the persistence cookie to prevent
 tampering.
 
 Obtain the cookie name and information by browsing to
@@ -17,7 +17,7 @@ Cookie Insert persistence can be found at https://support.f5.com/csp/article/K69
 
 *Q1. What is the cookie name? Note the information after the cookie.*
 
-Let’s begin by creating a custom HTTP profile.
+Let's begin by creating a custom HTTP profile.
 
 +----------------------------------------+------------------------------------------+---------------------------------------------+
 | Name:                                  | **secure-my-website**                    |                                             |
@@ -74,7 +74,7 @@ Cookie** link.
 Using iRules
 ------------
 
-By now you should be thoroughly sick of trying to remember to type in
+By now you should be thoroughly sick of trying to remember to type https:// in
 every time you want to access your secure web site. Not only is that
 easily rectify on the BIG-IP, but it is much more secure than opening up
 port 80 on your secure web servers, so that they can perform a redirect.
@@ -84,7 +84,7 @@ one prebuilt that you can use.
 
 Example of simple redirect iRule::
 
-   when HTTP\_REQUEST {
+   when HTTP_REQUEST {
       HTTP::redirect https://[HTTP::host][HTTP::uri]
    }
 
@@ -108,14 +108,14 @@ server.
 +------------------------------+-------------------------------------------------------------+
 | Service Port                 | 80 (HTTP)                                                   |
 +------------------------------+-------------------------------------------------------------+
-| Source Address Translation   | None <you don’t need this, this traffic is going nowhere>   |
+| Source Address Translation   | None <you don't need this, this traffic is going nowhere>   |
 +------------------------------+-------------------------------------------------------------+
 | iRule                        | \_sys\_https\_redirect                                      |
 +------------------------------+-------------------------------------------------------------+
 
 Hit **Finished**
 
-WOW! That didn’t go too far did it. You just got an error. If you are
+WOW! That didn't go too far did it. You just got an error. If you are
 going to redirect the HTTP request you need the HOST and URI information
 and that requires the HTTP protocol.
 

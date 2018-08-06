@@ -5,8 +5,7 @@ Module – Profiles
 
 301 Objectives covered: 
    - 1.02 - 1.05
-       - Given a scenario, determine the minimum profiles for an
-      application
+       - Given a scenario, determine the minimum profiles for an application
        - Given an application configuration, determine which functions can
          be offloaded to the LTM device
        - Given iRule functionality, determine the profiles and
