@@ -4,10 +4,8 @@ Roles and Partitions
 Create a partition
 ------------------
 
-Partitions are basically configuration containers. User assigned to a
-partition can only view their partition and the **Common** partition.
-Depending on their role a user may modify and create configuration items
-within their partition and use (but not modify) configuration items in
+Partitions are basically configuration containers. Users assigned to a
+partition can only view their partition configuration and configuration items in the **Common** partition. Depending on their role a user may modify and create configuration items within their partition and use (but not modify) configuration items in
 the common partition.
 
 To create a new partition, go to **System > Users > Partition List** and
@@ -24,7 +22,7 @@ selecting create.
 
 Create a new user **testuser** with **testpass** as the password and set
 their **Role** to **Manager**, assign them to the **test\_partition**
-partiionand give them **tmsh Terminal Access**
+partition and give them **tmsh Terminal Access**
 
 Open a new private browser to the BIG-IP, or log out and log back in
 under your current browser as the new user **testuser/testpass**.
@@ -33,7 +31,7 @@ under your current browser as the new user **testuser/testpass**.
 
 Look at the virtual servers. You can see these because they were all
 built in the Common partition, but you cannot modify them. If you go
-into a virtual server you will be the selections greyed out.
+into a virtual server you will see the selections greyed out.
 
 As you can see, you can view but not change things in common. But you
 can use things in the **Common** partition to build your own configuration.
@@ -45,7 +43,7 @@ partition as the default pool.
 In this case we are taking advantage of the **Common** partition nodes and
 pools to build are virtual server.
 
-Log out and log in as admin (or go to your other browser window that is
+Log out and log in as **admin** (or go to your other browser window that is
 logged in as admin)
 
 Go to the **Virtual Server List**.
@@ -56,7 +54,7 @@ Go to the upper right-hand corner and select **test\_partition**. You
 can now see the **test\_vs** virtual server. Since you are an admin you
 can also modify the virtual server as necessary
 
-SSH to your BIG-IP and log in with the new user name and you should be
+SSH to your BIG-IP and log in with the new user name and password.  You should be
 taken directly into the **tmsh**.
 
 Note the prompt, your partition name is there.
@@ -65,7 +63,7 @@ Now let's make a change to the test\_vs::
 
    mod ltm virtual test\_vs description "Partition Testing"
 
-In the BIG-IP WebUI go to your **test\_vs** virtual server.
+In the BIG-IP WebUI go to your **test_vs** virtual server.
 
 *Q3. Do you see your change? Is your change permanent?*
 
@@ -74,7 +72,7 @@ In the BIG-IP WebUI go to your **test\_vs** virtual server.
     **The following lab portion is probably not on the 301, but as I have you playing with
     partitions this is something if feel you should know.**
 
-SSH to the BIG-IP and log in as root. **cat** or **more** bigip.conf
+SSH to the BIG-IP and log in as **root**. **cat** or **more** bigip.conf
 and look for you **test\_vs** virtual::
 
    cat bigip.conf

@@ -4,7 +4,7 @@ Traffic Groups
 Build a New Traffic Group.
 --------------------------
 
-You are now going to build an active-active cluster by create a new
+You are now going to build an active-active cluster by creating a new
 traffic-group and forcing that traffic group to run on the Standby
 BIG-IP.
 

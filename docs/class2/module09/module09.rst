@@ -1,7 +1,7 @@
 Module – Roles and Partitions
 ===============================
 
-Learn more about user roles and how configuring partitions restricts
+In this module you will learn more about user roles and how configuring partitions restricts
 access to portions of the configuration based on user role.
 
 301a Objectives covered: 

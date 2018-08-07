@@ -25,8 +25,7 @@ The default gateway for the servers in the **secure\_pool** is
 **traffic-group-local-only** in **bigip01** and resides in the
 **bigip\_base.conf**. We need this IP address to float to the active
 BIG-IP upon failover. Because we are changing this from a base IP to a
-floating IP you will encounter an error. Incremental updates are the
-default, but sometimes a full overwrite is required.
+floating IP you will encounter an error when trying to sync the configuration. Incremental updates are the default sync method, but sometimes a full overwrite is required.
 
 On **bigip01**, open the self IP **server\_gw** (10.1.20.240) and
 assign it to the default floating traffic group **traffic-group-1.**
@@ -37,7 +36,7 @@ Group**, select **Overwrite Configure** and select **Sync**.
 
 Browse to **http://10.1.10.115**.
 
-*Q3. Did the site work? What was the client IP?*
+*Q3. Did the site work? What was the client IP?*  
 
 Browse to **http://10.1.10.100**.
 

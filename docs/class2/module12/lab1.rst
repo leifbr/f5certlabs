@@ -74,7 +74,7 @@ Working with profiles
 profiles?*
 
 Yes, you didn't need to SNAT because you put the servers default gateway
-on the BIG-IP (routed mode), you didn’t need SSL profiles because a the
+on the BIG-IP (routed mode), you didn't need SSL profiles because a the
 client created an SSL session directly with the backend server.
 
 *Q2. Could you use L7 iRules or profiles to view or modify the request or
@@ -223,7 +223,7 @@ A majority of the requests are coming from the United States.
 *Q2. What are the top two User Agents?*
 
 A majority of the requests should be from Internet Explorer v11 and
-iPhone6 users, but it’s not guaranteed due to the randomness of the
+iPhone6 users, but it's not guaranteed due to the randomness of the
 iRule.
 
 Module - Monitors and Status
@@ -291,7 +291,7 @@ SYNs with Resets
 
 No
 
-*Q7. Why do you think the* **wildcard\_vs** *didn’t pick up the packets?*
+*Q7. Why do you think the* **wildcard\_vs** *didn't pick up the packets?*
 
 www\_vs was the most specific virtual server so it responded. That
 response was to reset the connection.
@@ -444,7 +444,7 @@ Available, Yes
 
 *Q3. Why is the* **www\_pool** *still showing up?*
 
-Because there hasn’t been any client traffic to trigger the inband
+Because there hasn't been any client traffic to trigger the inband
 monitor.
 
 *Q4. What is the status of the* **www\_pool** *now?*
@@ -658,7 +658,7 @@ is selected.
 Priority Groups Lab
 ~~~~~~~~~~~~~~~~~~~
 
-*Q1. Are all members taking connections? Which member isn’t taking
+*Q1. Are all members taking connections? Which member isnt taking
 connections?*
 
 No, 10.1.20.13:80 in the low priority group is not taking connections.
@@ -756,7 +756,7 @@ No
 *Q5. Did you find your virtual server? Is the tmsh change you made in
 there?*
 
-Yes, but the new description isn’t there.
+Yes, but the new description isn't there.
 
 *Q6. Do you see the change now?*
 
@@ -869,21 +869,22 @@ Site couldn't be reached. The secure\_vs server does not use SNATs. The
 secure\_pool servers use the default gateway, 10.1.20.240, you built as
 a self IP on bigip01.
 
-*Q3. Did the site work? What was the client IP?*
+*Q3. Did the site work? What was the client IP? Why?*
 
-Yes, 10.1.10.51
+Yes, 10.1.10.51 because SNAT Auto Map is not configured on this virtual server and the pool member uses the floating IP as a default gateway.
 
 *Q4. What was the client IP address that the server saw (under* **Request
 Details** *on the main page)? Why?*
 
-It should be10.1.20.240. www\_vs uses SNAT automap. The BIG-IP will
+It should be 10.1.20.240. www_vs uses SNAT automap. The BIG-IP will
 always use the floating IP for the SNAT if available. If you exceed
 64000 simultaneous connects, the BIG-IP then uses the non-floating self
-IP, but you probably should have created a SNAT pool.
+IP, but you probably should have created a SNAT pool, since you cannot mirror
+SNAT connections on non-floating self IPs.
 
 *Q5. Does http://10.1.10.115 still work? What is the client IP?*
 
-Yes, 10.1.10.51
+Yes, 10.1.10.51 
 
 Mirroring
 ~~~~~~~~~
@@ -924,7 +925,7 @@ why not?*
 
 Yes the web site work, the client IP was 10.1.20.245 SNAT because the
 10.1.20.240 address is not part of the tg-2. The ftp site did NOT work
-because it’s SNAT pool IP is not part of the tg-2 traffic group
+because it's SNAT pool IP is not part of the tg-2 traffic group
 
 *Q4. Did it work now?*
 

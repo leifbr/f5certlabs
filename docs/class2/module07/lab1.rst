@@ -42,11 +42,10 @@ times.
 Priority Groups Lab
 -------------------
 
-Let’s look at priority groups. In this scenario we will treat the .13
+Let's look at priority groups. In this scenario we will treat the 10.1.20.13
 server as if it was is in a disaster recovery site that can be reached
-over a backhaul. To maintain at least two members in the pool for
-redundancy and load our customer would like to use it during maintenance
-periods or if one to the two other pool members fails.
+over a backhaul. You want to maintain at least two members in the pool for
+redundancy and load.  You would traffic to be distributed t0 10.1.20.13 only during maintenance of one on the two primary servers or if one to the two other pool members fails.
 
 .. NOTE::
 
@@ -64,10 +63,10 @@ Select the pool members **10.1.20.11** and **10.1.20.12** and set their
 Review your settings and let's see how load balancing reacts now.
 
 Select the **Statistics** tab, reset the pool statistics, browse to
-**http://10.1.10.100**** and refresh several times.
+**http://10.1.10.100** and refresh several times.
 
-Q1. Are all members taking connections? Which member isn't taking
-connections?
+*Q1. Are all members taking connections? Which member isn't taking
+connections?*
 
 Let's simulate a maintenance window or an outage by disabling a pool
 member **10.1.20.11:80** in the highest priority group. This should
@@ -76,7 +75,7 @@ in our high priority group has dropped below 2.
 
 *Q2. Is the lower priority group activated and taking connections?*
 
-Select a member in the Priority Group 10 and **Disable** that pool
+Select a member in the **Priority Group** 10 and **Disable** that pool
 member.
 
 Once again, select **Statistics**, reset the pool statistics, browse to the
@@ -94,7 +93,7 @@ application (ie. ftp) does not support cookies you must use and
 alternate method. The most common is Simple Persistence which is based
 on the source IP address/network.
 
-Verify your **www\_pool** is using Round Robin load balancing and the
+Verify your **www\_pool** is using **Round Robin** load balancing and the
 priority groups are disabled.
 
 Browse to **http://10.1.10.100** and refresh several times. You should see

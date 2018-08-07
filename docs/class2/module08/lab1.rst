@@ -24,7 +24,7 @@ SSH to **10.1.10.245**
 
 Browse to **https://10.1.10.245**
 
-**Q3. Did SSH work? Did browsing work?**
+*Q3. Did SSH work? Did browsing work?*
 
 *Q4. What other ports are opened when you select* **Allow Defaults**.
 
@@ -54,7 +54,7 @@ TMSH enter::
 
    dig pool.ntp.org
 
-Now that you’ve configure DNS, configure NTP using **pool.ntp.org**.
+Now that you've configure DNS, configure NTP using **pool.ntp.org**.
 
 VLAN Tagging
 ------------
