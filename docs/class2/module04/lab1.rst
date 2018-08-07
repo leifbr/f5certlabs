@@ -61,14 +61,14 @@ Select **Local Traffic > Monitor** on the side-bar and create and new
 HTTP monitor called **www_test**.
 
 .. list-table::
-   :widths: 40 70
+   :widths: 40 100
 
    *  - Name 
       - **www_test**
    *  - Type
       - **http**
    *  - Send String
-      - **GET /basic/ HTTP/1.1 \\r\\n**
+      - **GET /basic/ HTTP/1.1 \\r\\n\\r\\n**
    *  - Receive String
       - **200 OK**
    *  - User Name
