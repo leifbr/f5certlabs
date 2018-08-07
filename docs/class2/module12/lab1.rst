@@ -74,7 +74,7 @@ Working with profiles
 profiles?*
 
 Yes, you didn't need to SNAT because you put the servers default gateway
-on the BIG-IP (routed mode), you didn't need SSL profiles because a the
+on the BIG-IP (routed mode), you didn't need SSL profiles because the
 client created an SSL session directly with the backend server.
 
 *Q2. Could you use L7 iRules or profiles to view or modify the request or
@@ -218,7 +218,7 @@ View the Analytics Reports
 
 *Q1. What country has the most transactions?*
 
-A majority of the requests are coming from the United States.
+Usually the majority of the requests are coming from the United States.
 
 *Q2. What are the top two User Agents?*
 
@@ -331,11 +331,11 @@ Yellow Triangle - Availability: unavailable - State: enabled
 
 *Q3. Did new ftp session establish connection? Why not?*
 
-No, the virtual server's connection limit has been reached-
+No, the virtual server's connection limit has been reached.
 
 *Q4. Did tcpdump capture a connection reset?*
 
-Yes, tcpdump revealed “R” reset
+Yes, tcpdump had **R** resets returning from the virtual server.
 
 Pool Member and Virtual Servers
 -------------------------------
@@ -435,7 +435,7 @@ Inband Monitors
 the web site accessible? Why?*
 
 Unchecked (blue square), Yes, because Uncheck simply mean the status in
-unknown and thus always assume to be availale.
+unknown and is always assumed to be availale.
 
 *Q2. What are the status of* **www\_pool** *and* **www\_vs**? *Can you access
 the web site?*
@@ -515,17 +515,16 @@ Establish ftp connection
 *Q1. In the tcpdump above, what is client IP address and port and the
 server IP address port?*
 
-10.1.10.1:60603 and 10.1.10.20:21 (FTP)
+10.1.10.51:60603 and 10.1.10.20:21 (FTP)
 
 .. NOTE::
 
-   60603 is an ephemeral port and BIG-IP will attempt to the same
-   client port on the server-side connection
+   60603 is an ephemeral port, your port will probably be differenr.  BIG-IP will attempt to use the same ephemeral port on the server-side connection, if the port is available.
 
 *Q2. What is source ip and port as seen by ftp server in the example
 above?*
 
-Source IP: 10.1.20.249 Source IP: 61236
+Source IP: 10.1.20.249 Source Port: <it should be the same as the client ephemeral port>
 
 *Q3. What happened to the original client IP address and where did
 10.1.20.249 come from?*
@@ -546,14 +545,14 @@ Why?*
 The FTP connection is not affected because adding packet filter does not
 impact established connections.
 
-*Q2. Was ftp connection successful? If yes, why?*
+*Q2. Was ftp connection successful? Why?*
 
 The attempt to establish a new FTP connection was blocked, because the
 packet filter rule applies to all new connection attempts
 
 *Q3. What did tcpdump reveal? Connection timeout or reset?*
 
-Tcpdump revealed multiple "S" (syn) attempts without receiving ack. This
+Tcpdump revealed multiple "S" (syn) attempts without receiving ack or reset. This
 is indicating a connection timeout.
 
 *Q4. What did virtual server statistics for ftp20\_vs reveal? Why are
@@ -565,7 +564,7 @@ before VS in order of processing
 *Q5. Prioritize the packet processing order:*
 
 Virtual Server **3** SNAT **4** AFM/Pkt Filter **2** NAT **5** Existing
-Connections **1** Self IP **6 Drop **7**
+Connections **1** Self IP **6** Drop **7**
 
 Virtual Server Packet Processing
 --------------------------------
@@ -603,7 +602,7 @@ blocked
 
 *Q2. What is the status of your new virtual server? Why?*
 
-Unchecked (blue square) because there is nothing to check.
+Unchecked (blue square) because there is nothing to monitor.
 
 More on Transparent Virtual Servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -690,7 +689,7 @@ it, if it there is a persist record pointing to it.
 
 *Q5. Could you access the web site? Why?*
 
-Force Offline only allows exist connections to be maintain, regardless
+Force Offline only allows existing connections to be maintain, regardless
 of persistence records.
 
 Module - Networking
@@ -708,11 +707,11 @@ Ping reply successful
 
 *Q2. Was ssh successful? Why not?*
 
-No. Port lockdown set to “Allow None” by default
+No. Port lockdown set to **Allow None** by default
 
 *Q3. Did SSH work? Did browsing work?*
 
-Yes and No
+Yes to SSH and No to browsing.
 
 *Q4. What other ports are opened when you select* **Allow Defaults**?
 
@@ -724,7 +723,7 @@ From the bigip.conf::
 
 *Q5. Did SSH work? Did browsing work?*
 
-Yes and No
+Yes to SSH and No to browsing.
 
 Module - Roles and Partitions
 =============================
@@ -749,7 +748,7 @@ Yes, but configuration changes made in tmsh are not permanent until
 written to disk (save sys config) or a change is made in the GUI.
 Changes made in the GUI are push into memory and written to disk.
 
-**Q4. Did you find it in /config/bigip.conf?**
+*Q4. Did you find it in /config/bigip.conf?*
 
 No
 
@@ -797,7 +796,7 @@ Both are Active
 Prepare each BIG-IP for High Availability
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Q1. If you were to add multiple IP address to the Failover Unicast, when
+*Q1. If you were to add multiple IP addresses to the Failover Unicast, when
 would the BIG-IP failover?*
 
 Only after the network polls for all the IP addresses failed.
@@ -819,7 +818,7 @@ No, It was created automatically
 
 *Q4. Is the full configuration synchronized yet?*
 
-No! Only the Device Group is synced
+No. Only the Device Group is synced
 
 *Q5. What is the status and sync status on the BIG-IPs?*
 
@@ -849,8 +848,8 @@ Browse to http://10.1.10.100
 
 *Q10. Could you access the site? Which BIG-IP passed the traffic?*
 
-Yes, the Active BIG-IP. You can tell because client IP is the SNAT Auto
-Map of the active device.
+Yes, the Active BIG-IP. You can tell because the virtual server is using SNAT Auto
+Map and the source IP is selfIP address of the active device.
 
 Failover and Mirroring
 ----------------------
@@ -878,7 +877,7 @@ Details** *on the main page)? Why?*
 
 It should be 10.1.20.240. www_vs uses SNAT automap. The BIG-IP will
 always use the floating IP for the SNAT if available. If you exceed
-64000 simultaneous connects, the BIG-IP then uses the non-floating self
+64000 simultaneous connection, the BIG-IP then uses the non-floating self
 IP, but you probably should have created a SNAT pool, since you cannot mirror
 SNAT connections on non-floating self IPs.
 
